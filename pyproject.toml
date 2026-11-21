@@ -1,0 +1,65 @@
+[project]
+name = "expqueue"
+version = "0.1.0"
+description = "Serial, resumable runner for heavy batch jobs declared in a tracked queue.toml"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+    { name = "R0drig0V1" }
+]
+requires-python = ">=3.12"
+# Standard library only: the runner must keep working whatever the projects that use it install.
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/R0drig0V1/expqueue"
+Changelog = "https://github.com/R0drig0V1/expqueue/blob/main/CHANGELOG.md"
+
+[project.scripts]
+expq = "expqueue.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.11.21,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "mypy>=2.4.1",
+    "pytest>=9.2.0",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.17.4",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "D", "BLE", "RUF", "S", "SIM", "C90"]
+ignore = ["D105", "D107", "D203", "D213", "D401", "RUF001", "RUF002", "RUF003",
+          # subprocess without a shell is the point of this package; inputs are validated argv lists.
+          "S603", "S607"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["D103", "S101", "S108"]
+
+[tool.ruff.lint.mccabe]
+# expqueue.queuefile._parse_job is 11; lower to 10 when it is split.
+max-complexity = 11
+
+[tool.mypy]
+strict = true
+files = ["src", "tests"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --cov --cov-report=term-missing:skip-covered"
+
+[tool.coverage.run]
+source = ["src"]
+branch = true
+
+[tool.coverage.report]
+fail_under = 80
+show_missing = true
