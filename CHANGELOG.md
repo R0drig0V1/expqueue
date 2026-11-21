@@ -4,6 +4,12 @@ Releases are pinned by commit SHA (`uv tool install git+https://github.com/R0dri
 
 ## v0.1.0 (2026-11-21)
 
+Commit `83e362be4afbc9a69bf18cf61b5feca0f237597c`:
+
+```bash
+uv tool install git+https://github.com/R0drig0V1/expqueue@83e362be4afbc9a69bf18cf61b5feca0f237597c
+```
+
 First release as a repository of its own. The code was extracted from a research project
 that used it as an internal package, with a fresh history. The behaviour of the runner is
 unchanged; the settings that were specific to that project became generic and required.

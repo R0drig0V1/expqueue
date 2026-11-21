@@ -16,7 +16,8 @@ Pin a commit, not a tag (a tag can be moved):
 uv tool install git+https://github.com/R0drig0V1/expqueue@<sha>
 ```
 
-`<sha>` is the full commit SHA of the release you want. The releases and their SHAs are in
+`<sha>` is the full commit SHA of the release you want; v0.1.0 is
+`83e362be4afbc9a69bf18cf61b5feca0f237597c`. The releases and their SHAs are in
 [CHANGELOG.md](CHANGELOG.md); `git ls-remote https://github.com/R0drig0V1/expqueue 'refs/tags/v*'`
 prints them too. Python 3.12 or later. The package has no dependencies.
 
